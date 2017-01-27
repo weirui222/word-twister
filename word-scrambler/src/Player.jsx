@@ -36,6 +36,7 @@ class Player extends Component {
 			playerScore: 0,
 			hintNum: 0,
       correctWords: [],
+      hintClick:0
     };
   }
 
@@ -107,6 +108,7 @@ class Player extends Component {
 
   	if (this.state.hintNum < this.state.wordBank[this.state.index].length) {
   		this.setState({
+  			hintClick:this.state.hintClick+1,
   			hintNum:this.state.hintNum+1,
   			playerInput: this.state.wordBank[this.state.index].substr(0,this.state.hintNum+1)
   		});
@@ -125,7 +127,8 @@ class Player extends Component {
       index: 0,
 			playerScore: 0,
 			hintNum: 0,
-			correctWords: []
+			correctWords: [],
+			hintClick:0
   	});
   }
 
@@ -151,11 +154,12 @@ class Player extends Component {
           <div className='modalStyle'>
           	<p className="scoreTitle">Game Over</p>
           	<p className="scoreTitle">Score:{this.state.playerScore}</p>
+          	<p className="scoreTitle">Hints:{this.state.hintClick}</p>
           	<button className='btn btn-primary restartBtn' onClick={(e) => this.restart()}>Restart</button>
           </div>
         </Modal>
         <div className="row">
-          <div className="col-xs-9">
+          <div className="col-xs-7 col-xs-offset-2">
             <div className="titleContainer">
               <h2 className="gameTitle">-Word Twister-</h2>
               <hr className="titleHR"/>
@@ -174,7 +178,7 @@ class Player extends Component {
                   
             </form>
         </div>
-        <div className="col-xs-3">
+        <div className="col-xs-2 col-xs-offset-(-2)">
           <div className="playerScoreBox">
           	
           	<p className="scoreTitle">Correct Words:</p>
