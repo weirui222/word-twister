@@ -20,7 +20,8 @@ class Player extends Component {
       gameOver:false,
       index: 0,
 			playerScore: 0,
-			hintNum: 0
+			hintNum: 0,
+      correctWords: []
     };
   }
 
@@ -65,7 +66,10 @@ class Player extends Component {
   	console.log('this.state.wordBank[this.state.index]',this.state.wordBank[this.state.index]);
   	if (this.state.playerInput.toLowerCase() === this.state.wordBank[this.state.index].toLowerCase()) {
   		console.log('correct');
-  		this.setState({playerScore: this.state.playerScore+1});
+      let correctWord = this.state.wordBank[this.state.index];
+  		this.setState({playerScore: this.state.playerScore+1, correctWords: this.state.correctWords.push(correctWord) });
+      // console.log("Answers", this.state.correctWords);
+
   	} else {
   		console.log('wrong');
   	}
@@ -117,7 +121,7 @@ class Player extends Component {
     return (
       <div className="playerContainer">
         <div className="row">
-          <div className="col-xs-12">
+          <div className="col-xs-10">
             <div className="titleContainer">
               <h2 className="gameTitle">-Word Twister-</h2>
               <hr className="titleHR"/>
@@ -136,14 +140,18 @@ class Player extends Component {
                   <button className='btn btn-primary restartBtn' onClick={(e) => this.restart()}>Restart</button>
             </form>
             <div>
-            	Score: {this.state.playerScore}
-            </div>
-            <div>
           	  {this.state.gameOver ? 'Game Over':''}
             </div>
         </div>
+        <div className="col-xs-2">
+          <div className="playerScoreBox">
+            {/* <ul> this.state.correctWords.map(correctWord) => {<li>{correctWord}</li>}
+            </ul> */}
+            <p>Score: {this.state.playerScore}</p>
+            </div>
         </div>
       </div>
+    </div>
     );
   }
 

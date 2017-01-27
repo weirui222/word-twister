@@ -57,7 +57,12 @@
 position: absolute;;
 bottom: 30px;
 margin-right: 0 auto;
+}
 
+.playerScoreBox {
+  height: 500px;
+  border: 5px solid white;
+  border-radius: 25px;
 }
 
 ::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
