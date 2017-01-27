@@ -2,12 +2,19 @@ import React, { Component } from 'react';
 import './Player.css';
 import Modal from 'react-modal';
 
-const wordbank =["thundering", "javascript", "immutable", "variable", "vulgar", "serialize", "vagabond", "imminent", "shish kabob", "scold", "deserve", "apologise", "person", "elitist", "measure", "parallel", "examine", "mindful", "electric", "nefarious", "bitter", "treasure", "elongate", "judgement", "lacking", "excessive", "satisfy", "apartment", "superfluous", "steel", "chickens", "fairies", "delight", "education", "berserker", "triangulate", "crooked","abandoned", "profit", "erratic", "semantics", "maniacal", "breathe", "sticker", "unused", "grotesque", "challenger", "mysterious", "suffer", "semi-permeable", "horrible", "outrageous", "arithmetic", "derivative", "rhythm", "trivial", "succulent", "tranquil", "hallmark", "humongous", "concentrate", 'website', 'virtual', 'version', 'utility', 'toolbar',
-'storage', 'spyware', 'spammer', 'scanner', 'runtime', 'restore',
-'program', 'process', 'privacy', 'printer', 'podcast', 'offline',
-'network', 'monitor', 'malware', 'lurking', 'keyword', 'integer',
-'exabyte', 'encrypt', 'dynamic', 'digital', 'desktop', 'compile',
-'command', 'captcha', 'browser'];
+const wordbank =["thundering", "javascript", "immutable", "variable", "vulgar", 
+								"serialize", "vagabond", "imminent", "teriyaki", "scalding", "deserve", "apologize", 
+								"person", "elitist", "measure", "parallel", "examine", "mindful", "electric", "nefarious", 
+								"bitter", "treasure", "elongate", "judgement", "lacking", "excessive", "satisfy", 
+								"apartment", "superfluous", "steel", "chickens", "fairies", "delight", "education", 
+								"berserker", "triangulate", "crooked","abandoned", "profit", "erratic", "semantics", 
+								"maniacal", "breathe", "sticker", "unused", "grotesque", "challenger", "mysterious", 
+								"suffer", "semi-permeable", "horrible", "outrageous", "arithmetic", "derivative", "rhythm", 
+								"trivial", "succulent", "tranquil", "hallmark", "humongous", "concentrate", 'website', 
+								'virtual', 'version', 'utility', 'toolbar', 'storage', 'spyware', 'spammer', 'scanner', 
+								'runtime', 'restore', 'program', 'process', 'privacy', 'printer', 'podcast', 'offline', 
+								'network', 'monitor', 'malware', 'lurking', 'keyword', 'integer', 'exabyte', 'encrypt', 
+								'dynamic', 'digital', 'desktop', 'compile', 'command', 'captcha', 'browser'];
 
 
 const customStyles = {
@@ -169,7 +176,7 @@ class Player extends Component {
               <button className="btn btn-default hintBtn" onClick={(e) => this.hintWord()}>Hint!</button>
             </div>
             <form className="submitForm" onSubmit={(e) => this.compareWord(e)}>
-              <input placeholder="Enter the correct word" className="inputField" type="text"
+              <input placeholder="Enter the correct word" className="inputField" type="text" required
               			 onChange={e => this.inputChange(e)}
                      value={this.state.playerInput}
                   />
