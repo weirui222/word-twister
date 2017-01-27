@@ -12,6 +12,10 @@
   top: 70px;
 }
 
+.submitForm {
+  position: relative;
+}
+
 .inputField{
   background-color: transparent;
   border: none;
@@ -39,14 +43,21 @@
   color: NavajoWhite;
   position: relative;
   bottom: 30px;
-  margin-right: 5px;
+  right: 105px;
 }
-.hintBtn{
+.hintBtn, .restartBtn{
   font-family: 'Pacifico', sans-serif;
   font-size: 1.5em;
   background-color: #333333;
   border: 5px solid NavajoWhite;
   color: NavajoWhite;
+}
+
+.restartBtn {
+position: absolute;;
+bottom: 30px;
+margin-right: 0 auto;
+
 }
 
 ::-webkit-input-placeholder{ /* Chrome/Opera/Safari */

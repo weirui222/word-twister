@@ -126,18 +126,18 @@ class Player extends Component {
               <h1><span className="playerPrompt">Untwist: </span><span className="scrambledWord">{this.state.word}</span></h1>
               <button className="btn btn-default hintBtn" onClick={(e) => this.hintWord()}>Hint!</button>
             </div>
-            <form onSubmit={(e) => this.compareWord(e)}>
+            <form className="submitForm" onSubmit={(e) => this.compareWord(e)}>
               <input placeholder="Enter the correct word" className="inputField" type="text"
               			 onChange={e => this.inputChange(e)}
                      value={this.state.playerInput}
                   />
                   <hr className="inputHR" />
                   <button type="submit" className="btn btn-default submitBtn">Submit</button>
+                  <button className='btn btn-primary restartBtn' onClick={(e) => this.restart()}>Restart</button>
             </form>
             <div>
             	Score: {this.state.playerScore}
             </div>
-            <button className='btn btn-primary' onClick={(e) => this.restart()}>Restart</button>
             <div>
           	  {this.state.gameOver ? 'Game Over':''}
             </div>
