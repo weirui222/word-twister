@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import './Player.css';
 
-let index = 0;
-let playerScore = 0;
+const wordbank =["thundering", "javascript", "immutable", "variable", "vulgar", "serialize", "vagabond", "imminent", "shish kabob", "scold", "deserve", "apologise", "person", "elitist", "measure", "parallel", "examine", "mindful", "electric", "nefarious", "bitter", "treasure", "elongate", "judgement", "lacking", "excessive", "satisfy", "apartment", "superfluous", "steel", "chickens", "fairies", "delight", "education", "berserker", "triangulate", "crooked","abandoned", "profit", "erratic", "semantics", "maniacal", "breathe", "sticker", "unused", "grotesque", "challenger", "mysterious", "suffer", "semi-permeable", "horrible", "outrageous", "arithmetic", "derivative", "rhythm", "trivial", "succulent", "tranquil", "hallmark", "humongous", "concentrate", 'website', 'virtual', 'version', 'utility', 'toolbar',
+'storage', 'spyware', 'spammer', 'scanner', 'runtime', 'restore',
+'program', 'process', 'privacy', 'printer', 'podcast', 'offline',
+'network', 'monitor', 'malware', 'lurking', 'keyword', 'integer',
+'exabyte', 'encrypt', 'dynamic', 'digital', 'desktop', 'compile',
+'command', 'captcha', 'browser']
+
+
 class Player extends Component {
   constructor() {
     super();
@@ -9,8 +16,21 @@ class Player extends Component {
     this.state = {
       word: "",
       playerInput:"",
-      wordBank: ["Test", "Website", "Number"]
+      wordBank: this.pickWords(),
+      gameOver:false,
+      index: 0,
+			playerScore: 0,
+			hintNum: 0
     };
+  }
+
+  pickWords() {
+  	let arr=[];
+  	for (var i = 0; i < 10; i++) {
+  		let j = Math.floor(Math.random() * wordbank.length);
+  		arr.push(wordbank[j]);
+  	}
+  	return arr;
   }
 
   shuffle(string) {
@@ -27,7 +47,7 @@ class Player extends Component {
   }
 
   chooseWord() {
-    let word = this.state.wordBank[index];
+    let word = this.state.wordBank[this.state.index];
     let shuffled = this.shuffle(word);
     this.setState({word: shuffled});
   }
@@ -38,20 +58,54 @@ class Player extends Component {
 
   compareWord(e) {
   	e.preventDefault();
-  	console.log('this.state.wordBank[index]',this.state.wordBank[index]);
-  	if (this.state.playerInput.toLowerCase() === this.state.wordBank[index].toLowerCase()) {
+  	if (this.state.gameOver) {
+  		return;
+  	}
+  	this.setState({hintNum:0});
+  	console.log('this.state.wordBank[this.state.index]',this.state.wordBank[this.state.index]);
+  	if (this.state.playerInput.toLowerCase() === this.state.wordBank[this.state.index].toLowerCase()) {
   		console.log('correct');
-  		playerScore++;
+  		this.setState({playerScore: this.state.playerScore+1});
   	} else {
   		console.log('wrong');
   	}
-  	if (index< this.state.wordBank.length-1) {
-  		index++;
+  	if (this.state.index< this.state.wordBank.length-1) {
+  		this.setState({
+  			index: this.state.index+1,
+  			word: this.shuffle(this.state.wordBank[this.state.index+1]),
+        playerInput: ""
+  		});
   	} else {
+  		this.setState({gameOver:true});
   		console.log('Game Over');
   	}
-  	
-  	this.chooseWord();
+
+
+  }
+
+  hintWord() {
+
+  	if (this.state.hintNum < this.state.wordBank[this.state.index].length) {
+  		this.setState({
+  			hintNum:this.state.hintNum+1,
+  			playerInput: this.state.wordBank[this.state.index].substr(0,this.state.hintNum+1)
+  		});
+  	}
+
+  }
+
+  restart() {
+  	let words = this.pickWords()
+
+  	this.setState({
+  		word: this.shuffle(words[0]),
+      playerInput:"",
+      wordBank: words,
+      gameOver:false,
+      index: 0,
+			playerScore: 0,
+			hintNum: 0
+  	});
   }
 
   componentDidMount() {
@@ -62,27 +116,36 @@ class Player extends Component {
   render() {
     return (
       <div className="playerContainer">
-        <div>
-          <h2>Welcome to Word Scramble</h2>
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="titleContainer">
+              <h2 className="gameTitle">-Word Twister-</h2>
+              <hr className="titleHR"/>
+            </div>
+            <div>
+              <h1><span className="playerPrompt">Untwist: </span><span className="scrambledWord">{this.state.word}</span></h1>
+              <button className="btn btn-default hintBtn" onClick={(e) => this.hintWord()}>Hint!</button>
+            </div>
+            <form onSubmit={(e) => this.compareWord(e)}>
+              <input placeholder="Enter the correct word" className="inputField" type="text"
+              			 onChange={e => this.inputChange(e)}
+                     value={this.state.playerInput}
+                  />
+                  <hr className="inputHR" />
+                  <button type="submit" className="btn btn-default submitBtn">Submit</button>
+            </form>
+            <div>
+            	Score: {this.state.playerScore}
+            </div>
+            <button className='btn btn-primary' onClick={(e) => this.restart()}>Restart</button>
+            <div>
+          	  {this.state.gameOver ? 'Game Over':''}
+            </div>
         </div>
-        <div>
-          <h1>Scrambled Word Goes Here {this.state.word}</h1>
-        </div>
-        <form onSubmit={(e) => this.compareWord(e)}>
-          <input type="text"
-          			 onChange={e => this.inputChange(e)}
-                 value={this.state.playerInput}
-                />
-          <input type="submit" />
-        </form>
-
-        <div>
-        	Score: {playerScore}
         </div>
       </div>
     );
   }
-
 
 }
 

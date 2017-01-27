@@ -1,0 +1,112 @@
+.playerPrompt{
+  font-family: 'Pacifico', sans-serif;
+}
+
+.gameTitle{
+  font-family: 'Pacifico', sans-serif;
+  font-size: 4.5em;
+  position: relative;
+  font-weight: bolder;
+  text-shadow: 4px 4px NavajoWhite;
+  color: #333333;
+  top: 70px;
+}
+
+.inputField{
+  background-color: transparent;
+  border: none;
+  color: #333333;
+  font-family: "Playfair Display", sans-serif;
+  font-size: 2em;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.inputField:focus{
+    outline-width: 0;
+}
+
+[placeholder]:focus::-webkit-input-placeholder{
+  transition: opacity 0.3s 0.2s ease;
+  opacity: 0;
+}
+
+.submitBtn{
+  font-family: 'Pacifico', sans-serif;
+  font-size: 1.5em;
+  background-color: #333333;
+  border: 5px solid NavajoWhite;
+  color: NavajoWhite;
+  position: relative;
+  bottom: 30px;
+  margin-right: 5px;
+}
+.hintBtn{
+  font-family: 'Pacifico', sans-serif;
+  font-size: 1.5em;
+  background-color: #333333;
+  border: 5px solid NavajoWhite;
+  color: NavajoWhite;
+}
+
+::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
+  color: #333333;
+  text-align: center;
+}
+::-moz-placeholder{ /* Firefox 19+ */
+  color: #333333;
+  text-align: center;
+}
+:-ms-input-placeholder{ /* IE 10+ */
+  color: #333333;
+  text-align: center;
+}
+:-moz-placeholder{ /* Firefox 18- */
+  color: #333333;
+  text-align: center;
+}
+
+.titleHR{
+  border: 3px solid NavajoWhite;
+  border-radius: 50px;
+  position: relative;
+  width: 400px;
+  top: 53px;
+}
+
+.inputHR{
+  border: 2px solid #333333;
+  position: relative;
+  width: 360px;
+  bottom: 20px;
+  border-radius: 50px;
+}
+
+.scrambledWord{
+  font-family: "Playfair Display", sans-serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  letter-spacing: 3px;
+}
+
+.playerContainer{
+  background-color: darksalmon;
+  height: 100%;
+}
+.col-xs-12 {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  height: 100%;
+}
+
+.titleContainer{
+  padding-top: 5px;
+  height: 250px;
+  background-image: url(/img/logo.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
