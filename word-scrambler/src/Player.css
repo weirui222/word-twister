@@ -1,15 +1,31 @@
 .playerPrompt{
   font-family: 'Pacifico', sans-serif;
 }
+.modalStyle{
+	width: 350px;
+	height: 250px;
+	text-align: center;
+}
+li{
+	font-family: 'Pacifico', sans-serif;
+	text-align: left;
+	font-weight: bolder;
+	font-size: 1.2em;
+}
 
 .gameTitle{
   font-family: 'Pacifico', sans-serif;
   font-size: 4.5em;
   position: relative;
   font-weight: bolder;
-  text-shadow: 4px 4px NavajoWhite;
+  text-shadow: 4px 4px white;
   color: #333333;
   top: 70px;
+}
+.scoreTitle{
+	font-family: 'Pacifico', sans-serif;
+	font-weight: bolder;
+	font-size: 1.5em;
 }
 
 .submitForm {
@@ -39,30 +55,25 @@
   font-family: 'Pacifico', sans-serif;
   font-size: 1.5em;
   background-color: #333333;
-  border: 5px solid NavajoWhite;
-  color: NavajoWhite;
+  border: 5px solid white;
+  color: white;
   position: relative;
   bottom: 30px;
-  right: 105px;
 }
 .hintBtn, .restartBtn{
   font-family: 'Pacifico', sans-serif;
   font-size: 1.5em;
   background-color: #333333;
-  border: 5px solid NavajoWhite;
-  color: NavajoWhite;
-}
-
-.restartBtn {
-position: absolute;;
-bottom: 30px;
-margin-right: 0 auto;
+  border: 5px solid white;
+  color: white;
 }
 
 .playerScoreBox {
-  height: 500px;
+  height: 400px;
+  min-width: 200px;
   border: 5px solid white;
   border-radius: 25px;
+  margin-top: 100px;
 }
 
 ::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
@@ -83,7 +94,7 @@ margin-right: 0 auto;
 }
 
 .titleHR{
-  border: 3px solid NavajoWhite;
+  border: 3px solid white;
   border-radius: 50px;
   position: relative;
   width: 400px;

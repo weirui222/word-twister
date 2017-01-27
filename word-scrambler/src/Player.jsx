@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import './Player.css';
+import Modal from 'react-modal';
 
 const wordbank =["thundering", "javascript", "immutable", "variable", "vulgar", "serialize", "vagabond", "imminent", "shish kabob", "scold", "deserve", "apologise", "person", "elitist", "measure", "parallel", "examine", "mindful", "electric", "nefarious", "bitter", "treasure", "elongate", "judgement", "lacking", "excessive", "satisfy", "apartment", "superfluous", "steel", "chickens", "fairies", "delight", "education", "berserker", "triangulate", "crooked","abandoned", "profit", "erratic", "semantics", "maniacal", "breathe", "sticker", "unused", "grotesque", "challenger", "mysterious", "suffer", "semi-permeable", "horrible", "outrageous", "arithmetic", "derivative", "rhythm", "trivial", "succulent", "tranquil", "hallmark", "humongous", "concentrate", 'website', 'virtual', 'version', 'utility', 'toolbar',
 'storage', 'spyware', 'spammer', 'scanner', 'runtime', 'restore',
 'program', 'process', 'privacy', 'printer', 'podcast', 'offline',
 'network', 'monitor', 'malware', 'lurking', 'keyword', 'integer',
 'exabyte', 'encrypt', 'dynamic', 'digital', 'desktop', 'compile',
-'command', 'captcha', 'browser']
+'command', 'captcha', 'browser'];
+
+
+const customStyles = {
+  content : {
+    top: '30%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    background: 'darksalmon',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 
 class Player extends Component {
@@ -21,9 +35,10 @@ class Player extends Component {
       index: 0,
 			playerScore: 0,
 			hintNum: 0,
-      correctWords: []
+      correctWords: [],
     };
   }
+
 
   pickWords() {
   	let arr=[];
@@ -67,7 +82,8 @@ class Player extends Component {
   	if (this.state.playerInput.toLowerCase() === this.state.wordBank[this.state.index].toLowerCase()) {
   		console.log('correct');
       let correctWord = this.state.wordBank[this.state.index];
-  		this.setState({playerScore: this.state.playerScore+1, correctWords: this.state.correctWords.push(correctWord) });
+      this.state.correctWords.push(correctWord);
+  		this.setState({playerScore: this.state.playerScore+1, correctWords: this.state.correctWords });
       // console.log("Answers", this.state.correctWords);
 
   	} else {
@@ -108,7 +124,8 @@ class Player extends Component {
       gameOver:false,
       index: 0,
 			playerScore: 0,
-			hintNum: 0
+			hintNum: 0,
+			correctWords: []
   	});
   }
 
@@ -118,10 +135,27 @@ class Player extends Component {
   }
 
   render() {
+  	let listCorrect = [];
+  	if (this.state.correctWords.length > 0) {
+  		listCorrect = this.state.correctWords.map((correctWord, index) => { 
+  		return <li key={index}> {correctWord} </li> });
+  	}
+
+
     return (
       <div className="playerContainer">
+      	<Modal 
+           isOpen={this.state.gameOver}
+           style={customStyles}
+           contentLabel="Example Modal">
+          <div className='modalStyle'>
+          	<p className="scoreTitle">Game Over</p>
+          	<p className="scoreTitle">Score:{this.state.playerScore}</p>
+          	<button className='btn btn-primary restartBtn' onClick={(e) => this.restart()}>Restart</button>
+          </div>
+        </Modal>
         <div className="row">
-          <div className="col-xs-10">
+          <div className="col-xs-9">
             <div className="titleContainer">
               <h2 className="gameTitle">-Word Twister-</h2>
               <hr className="titleHR"/>
@@ -137,18 +171,19 @@ class Player extends Component {
                   />
                   <hr className="inputHR" />
                   <button type="submit" className="btn btn-default submitBtn">Submit</button>
-                  <button className='btn btn-primary restartBtn' onClick={(e) => this.restart()}>Restart</button>
+                  
             </form>
-            <div>
-          	  {this.state.gameOver ? 'Game Over':''}
-            </div>
         </div>
-        <div className="col-xs-2">
+        <div className="col-xs-3">
           <div className="playerScoreBox">
-            {/* <ul> this.state.correctWords.map(correctWord) => {<li>{correctWord}</li>}
-            </ul> */}
-            <p>Score: {this.state.playerScore}</p>
-            </div>
+          	
+          	<p className="scoreTitle">Correct Words:</p>
+          	<div>
+	          	<ul> 
+	            	{listCorrect}
+	            </ul>
+          	</div>
+          </div>
         </div>
       </div>
     </div>
