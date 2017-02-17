@@ -60,12 +60,17 @@ li{
   position: relative;
   bottom: 30px;
 }
-.hintBtn, .restartBtn{
+.hintBtn, .restartBtn, .skipBtn{
   font-family: 'Pacifico', sans-serif;
   font-size: 1.5em;
   background-color: #333333;
   border: 5px solid white;
   color: white;
+}
+
+.hintBtn{
+  margin-right: 10px;
+
 }
 
 .playerScoreBox {
