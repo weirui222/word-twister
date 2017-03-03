@@ -4,4 +4,4 @@ Word Twister is a classic word scrambler game built by Congcong Li & Donnie Ells
 To install and run the application, fork or clone the repository and run `npm install` to install all associated dependencies.
 Run `nodemon` to start a local server and navigate to localhost:3000 to view the application.
 
-
+![Alt text](/public/img/twisteraction.png?raw=true "Word Twister")
